@@ -691,7 +691,7 @@ const FAQSection = () => {
                {/* Bottom CTA */}
         <div className="text-center mt-16">
           <div className="max-w-2xl mx-auto">
-            <div className="bg-gradient-to-r from-[#D6E2B4] to-[#E8F2CC] rounded-2xl p-8 shadow-lg">
+            <div className="bg-gradient-to-r from-[#FDFCE9] to-[#FDFCE9] rounded-2xl p-8 shadow-lg">
               <h3 className="text-2xl font-bold text-[#3D5919] mb-4 playfair-display">
                 Vous hésitez encore ?
               </h3>
