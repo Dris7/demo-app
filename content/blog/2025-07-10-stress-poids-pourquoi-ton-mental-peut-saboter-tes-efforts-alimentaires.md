@@ -12,8 +12,10 @@ excerpt: Le stress peut bloquer la perte de poids en augmentant l'appétit, en
   favorisant le stockage des graisses et en perturbant le sommeil. Il pousse
   souvent à grignoter pour apaiser les émotions. Mieux gérer son stress, c’est
   aussi mieux gérer son poids.
-featured_image: /images/uploads/stress-poids.jpg
+featured_image: ""
 ---
+![Stress & Poids](/images/uploads/stress-poids.jpg "Stress & Poids")
+
 Tu fais attention à ton alimentation, tu bouges régulièrement, mais malgré tout... ton poids stagne ou augmente ? Et si c’était **le stress**, le vrai coupable ?
 
 Pas celui qui te pousse à crier sur ton ordi quand la Wi-Fi bug. Celui plus insidieux : le stress chronique. Celui qui s’accumule, s’installe… et agit sur ton corps **même quand tu penses le gérer**.
