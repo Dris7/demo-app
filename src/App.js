@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { BrowserRouter as Router, Routes, Route, Link, useNavigate, useLocation } from 'react-router-dom';
 import { ChevronDown, Menu, X, Check, ArrowRight, Calendar, Mail, Phone, Instagram, Star, Heart, Target, Clock, MessageCircle, ChevronLeft, ChevronRight, Plus, Minus, Scale } from 'lucide-react';
 import { Zap, Award, TrendingUp, AlertCircle } from 'lucide-react';
 import ResourcesPage from './ResourcesPage';
@@ -77,7 +78,10 @@ const OptimizedImage = ({ src, alt, className, priority = false, fallbackSrc, ..
 };
 
 // Header Component
-const Header = ({ scrolled, isMenuOpen, setIsMenuOpen, onNavigate, currentPage }) => {
+const Header = ({ scrolled, isMenuOpen, setIsMenuOpen }) => {
+  const navigate = useNavigate();
+  const location = useLocation();
+
   const handleMenuItemClick = () => {
     setIsMenuOpen(false);
   };
@@ -89,9 +93,9 @@ const Header = ({ scrolled, isMenuOpen, setIsMenuOpen, onNavigate, currentPage }
       return;
     }
     
-    if (currentPage !== 'home') {
+    if (location.pathname !== '/') {
       // If we're not on home page, first go to home, then scroll to section
-      onNavigate('home');
+      navigate('/');
       // Use setTimeout to ensure the home page loads before scrolling
       setTimeout(() => {
         const element = document.getElementById(target);
@@ -119,8 +123,8 @@ const Header = ({ scrolled, isMenuOpen, setIsMenuOpen, onNavigate, currentPage }
           <button onClick={() => handleNavigation('accueil')} className={`${scrolled ? 'text-[#3D5919]' : 'text-white'} hover:text-[#D6E2B4] transition-colors montserrat-medium bg-transparent border-none cursor-pointer`}>Accueil</button>
           <button onClick={() => handleNavigation('services')} className={`${scrolled ? 'text-[#3D5919]' : 'text-white'} hover:text-[#D6E2B4] transition-colors montserrat-medium bg-transparent border-none cursor-pointer`}>Services</button>
           <button onClick={() => handleNavigation('qui-suis-je')} className={`${scrolled ? 'text-[#3D5919]' : 'text-white'} hover:text-[#D6E2B4] transition-colors montserrat-medium bg-transparent border-none cursor-pointer`}>Qui suis-je ?</button>
-          <button onClick={() => onNavigate('resources')} className={`${scrolled ? 'text-[#3D5919]' : 'text-white'} hover:text-[#D6E2B4] transition-colors montserrat-medium bg-transparent border-none cursor-pointer`}>Ressources</button>
-          <button onClick={() => onNavigate('blog')} className={`${scrolled ? 'text-[#3D5919]' : 'text-white'} hover:text-[#D6E2B4] transition-colors montserrat-medium bg-transparent border-none cursor-pointer`}>Blog</button>
+          <Link to="/resources" className={`${scrolled ? 'text-[#3D5919]' : 'text-white'} hover:text-[#D6E2B4] transition-colors montserrat-medium`}>Ressources</Link>
+          <Link to="/blog" className={`${scrolled ? 'text-[#3D5919]' : 'text-white'} hover:text-[#D6E2B4] transition-colors montserrat-medium`}>Blog</Link>
           <button onClick={() => handleNavigation('rendez-vous')} className="bg-[#3D5919] text-white px-6 py-2 rounded-full hover:bg-[#2A3F0F] transition-colors montserrat-medium border-none cursor-pointer">Rendez-vous</button>
         </div>
 
@@ -137,8 +141,8 @@ const Header = ({ scrolled, isMenuOpen, setIsMenuOpen, onNavigate, currentPage }
             <button onClick={() => handleNavigation('accueil')} className="block w-full text-left py-2 text-[#3D5919] montserrat-medium bg-transparent border-none cursor-pointer">Accueil</button>
             <button onClick={() => handleNavigation('services')} className="block w-full text-left py-2 text-[#3D5919] montserrat-medium bg-transparent border-none cursor-pointer">Services</button>
             <button onClick={() => handleNavigation('qui-suis-je')} className="block w-full text-left py-2 text-[#3D5919] montserrat-medium bg-transparent border-none cursor-pointer">Qui suis-je ?</button>
-            <button onClick={() => { onNavigate('resources'); handleMenuItemClick(); }} className="block w-full text-left py-2 text-[#3D5919] montserrat-medium bg-transparent border-none cursor-pointer">Ressources</button>
-            <button onClick={() => { onNavigate('blog'); handleMenuItemClick(); }} className="block w-full text-left py-2 text-[#3D5919] montserrat-medium bg-transparent border-none cursor-pointer">Blog</button>
+            <Link to="/resources" onClick={handleMenuItemClick} className="block w-full text-left py-2 text-[#3D5919] montserrat-medium">Ressources</Link>
+            <Link to="/blog" onClick={handleMenuItemClick} className="block w-full text-left py-2 text-[#3D5919] montserrat-medium">Blog</Link>
             <button onClick={() => handleNavigation('rendez-vous')} className="block w-full py-2 bg-[#3D5919] text-white text-center rounded-full montserrat-medium border-none cursor-pointer">Rendez-vous</button>
           </div>
         </div>
@@ -1118,7 +1122,9 @@ const BlogSection = () => {
 };
 
 // Footer Component
-const Footer = ({ onNavigate, currentPage }) => {
+const Footer = () => {
+  const navigate = useNavigate();
+  const location = useLocation();
   const [newsletterData, setNewsletterData] = useState({
     firstName: '',
     lastName: '',
@@ -1140,9 +1146,9 @@ const Footer = ({ onNavigate, currentPage }) => {
   };
 
   const handleNavigation = (target) => {
-    if (currentPage !== 'home') {
+    if (location.pathname !== '/') {
       // If we're not on home page, first go to home, then scroll to section
-      onNavigate('home');
+      navigate('/');
       // Use setTimeout to ensure the home page loads before scrolling
       setTimeout(() => {
         const element = document.getElementById(target);
@@ -1198,8 +1204,8 @@ const Footer = ({ onNavigate, currentPage }) => {
               <li><button onClick={() => handleNavigation('accueil')} className="hover:text-[#D6E2B4] transition-colors bg-transparent border-none cursor-pointer text-left w-full montserrat-medium">Accueil</button></li>
               <li><button onClick={() => handleNavigation('services')} className="hover:text-[#D6E2B4] transition-colors bg-transparent border-none cursor-pointer text-left w-full montserrat-medium">Services</button></li>
               <li><button onClick={() => handleNavigation('qui-suis-je')} className="hover:text-[#D6E2B4] transition-colors bg-transparent border-none cursor-pointer text-left w-full montserrat-medium">Qui suis-je ?</button></li>
-              <li><button onClick={() => onNavigate('resources')} className="hover:text-[#D6E2B4] transition-colors bg-transparent border-none cursor-pointer text-left w-full montserrat-medium">Ressources</button></li>
-              <li><button onClick={() => onNavigate('blog')} className="hover:text-[#D6E2B4] transition-colors bg-transparent border-none cursor-pointer text-left w-full montserrat-medium">Blog</button></li>
+              <li><Link to="/resources" className="hover:text-[#D6E2B4] transition-colors montserrat-medium">Ressources</Link></li>
+              <li><Link to="/blog" className="hover:text-[#D6E2B4] transition-colors montserrat-medium">Blog</Link></li>
             </ul>
           </div>
 
@@ -1275,11 +1281,51 @@ const Footer = ({ onNavigate, currentPage }) => {
   );
 };
 
-// Main App Component
-const App = () => {
+// Home Page Component
+const HomePage = () => {
+  return (
+    <>
+      <HeroSection />
+      
+      <QuoteSection 
+        quote="Je vous montre le chemin...et c'est vous qui avancez. Car, le changement demande de l'implication!" 
+        author=""
+      />
+      
+      <AboutSection />
+      
+      <QuoteSection 
+        quote="Je vous accompagne avec bienveillance pour retrouver un équilibre durable entre votre corps et votre alimentation." 
+        author="Dt. Rim Ajibe"
+        bgColor="bg-[#FDFCE9]"
+      />
+      
+      <PhilosophySection />
+      
+      <QuoteSection 
+        quote="Les changements temporaires donnent des résultats temporaires... C'est l'équilibre sur le long terme qui transforme !"
+        bgColor="bg-[#D6E2B4]"
+      />
+      
+      <ServicesSection />
+      
+      <BenefitsSection />
+      
+      <PricingSection />
+      
+      <ImportantNoticeSection />
+      
+      <TestimonialsSection />
+      
+      <FAQSection />
+    </>
+  );
+};
+
+// Main App Layout Component
+const AppLayout = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
-  const [currentPage, setCurrentPage] = useState('home'); // 'home', 'resources', 'blog'
 
   useEffect(() => {
     // Preload critical images
@@ -1310,70 +1356,6 @@ const App = () => {
     };
   }, []);
 
-  // Handle navigation to dedicated pages
-  const handleNavigation = (page) => {
-    setCurrentPage(page);
-    setIsMenuOpen(false);
-    
-    // Scroll to top when navigating to resources or blog pages
-    if (page === 'resources' || page === 'blog') {
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-    }
-  };
-
-  // Handle back navigation
-  const handleBackToHome = () => {
-    setCurrentPage('home');
-  };
-
-  // Render the appropriate content based on current page
-  const renderContent = () => {
-    switch (currentPage) {
-      case 'resources':
-        return <ResourcesPage />;
-      case 'blog':
-        return <BlogPage />;
-      default:
-        return (
-          <>
-            <HeroSection />
-            
-            <QuoteSection 
-              quote="Je vous montre le chemin...et c'est vous qui avancez. Car, le changement demande de l'implication!" 
-              author=""
-            />
-            
-            <AboutSection />
-            
-            <QuoteSection 
-              quote="Je vous accompagne avec bienveillance pour retrouver un équilibre durable entre votre corps et votre alimentation." 
-              author="Dt. Rim Ajibe"
-              bgColor="bg-[#FDFCE9]"
-            />
-            
-            <PhilosophySection />
-            
-            <QuoteSection 
-              quote="Les changements temporaires donnent des résultats temporaires... C'est l'équilibre sur le long terme qui transforme !"
-              bgColor="bg-[#D6E2B4]"
-            />
-            
-            <ServicesSection />
-            
-            <BenefitsSection />
-            
-            <PricingSection />
-            
-            <ImportantNoticeSection />
-            
-            <TestimonialsSection />
-            
-            <FAQSection />
-          </>
-        );
-    }
-  };
-
   return (
     <div className="min-h-screen bg-[#FDFCE9]">
       {/* Google Fonts */}
@@ -1386,11 +1368,15 @@ const App = () => {
       <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="true" />
       <link href="https://fonts.googleapis.com/css2?family=Agrandir+Wide:wght@400;500;600;700&display=swap" rel="stylesheet" />
 
-      <Header scrolled={scrolled} isMenuOpen={isMenuOpen} setIsMenuOpen={setIsMenuOpen} onNavigate={handleNavigation} currentPage={currentPage} />
+      <Header scrolled={scrolled} isMenuOpen={isMenuOpen} setIsMenuOpen={setIsMenuOpen} />
       
-      {renderContent()}
+      <Routes>
+        <Route path="/" element={<HomePage />} />
+        <Route path="/resources" element={<ResourcesPage />} />
+        <Route path="/blog" element={<BlogPage />} />
+      </Routes>
       
-      <Footer onNavigate={handleNavigation} currentPage={currentPage} />
+      <Footer />
 
       <style jsx>{`
         .playfair-display {
@@ -1421,6 +1407,15 @@ const App = () => {
         }
       `}</style>
     </div>
+  );
+};
+
+// Main App Component
+const App = () => {
+  return (
+    <Router>
+      <AppLayout />
+    </Router>
   );
 };
 
