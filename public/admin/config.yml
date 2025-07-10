@@ -7,8 +7,8 @@ locale: fr
 media_folder: "public/images/uploads"
 public_folder: "/images/uploads"
 
-display_url: https://dtrimajibe.com
-logo_url: https://dtrimajibe.com/favicon.ico
+display_url: https://dtrim.netlify.app
+logo_url: https://dtrim.netlify.app/favicon.ico
 
 collections:
   - name: "blog"
