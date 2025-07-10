@@ -685,10 +685,8 @@ const FAQSection = () => {
             </div>
           ))}
         </div>
-        <div className="text-center mt-12">
-          <button onClick={() => window.open('https://calendly.com/dieteticienne-ajibe-rim/consultation-gratuite?primary_color=3D5919&text_color=000000&background_color=ffffff&hide_event_type_details=1&hide_gdpr_banner=1', '_blank')} className="bg-[#3D5919] text-white px-4 sm:px-8 py-3 sm:py-4 rounded-full text-sm sm:text-lg hover:bg-[#2A3F0F] transition-all transform hover:scale-105 montserrat-medium border-none cursor-pointer">Je prends mon rendez-vous</button>
-        </div>
-               {/* Bottom CTA */}
+
+      {/* Bottom CTA */}
         <div className="text-center mt-16">
           <div className="max-w-2xl mx-auto">
             <div className="bg-gradient-to-r from-[#FDFCE9] to-[#FDFCE9] rounded-2xl p-8 shadow-lg">
