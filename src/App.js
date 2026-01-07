@@ -1295,7 +1295,7 @@ const HomePage = () => {
       
       <BenefitsSection />
       
-      <PricingSection />
+      {/* <PricingSection /> */}
       
       <ImportantNoticeSection />
       
